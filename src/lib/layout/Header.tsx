@@ -1,4 +1,4 @@
-import { Box, Flex } from '@chakra-ui/react';
+import { Box, Flex, Heading } from '@chakra-ui/react';
 
 import ThemeToggle from './ThemeToggle';
 
@@ -12,6 +12,7 @@ const Header = () => {
       justifyContent="center"
       gridGap={2}
     >
+      <Heading>IndieMart</Heading>
       <Box marginLeft="auto">
         <ThemeToggle />
       </Box>

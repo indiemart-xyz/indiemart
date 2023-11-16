@@ -1,5 +1,5 @@
 /* eslint-disable import/no-extraneous-dependencies */
-import react from '@vitejs/plugin-react';
+import react from '@vitejs/plugin-react-swc';
 import million from 'million/compiler';
 import { defineConfig } from 'vite';
 import checker from 'vite-plugin-checker';
@@ -18,5 +18,12 @@ export default defineConfig({
   ],
   server: {
     open: true,
+    proxy: {
+      "/api": {
+        target: "http://indiemart.yggdrasil.id",
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api/, '')
+      }
+    }
   },
 });

@@ -25,13 +25,15 @@
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
     "@fontsource/plus-jakarta-sans": "^5.0.17",
+    "@mobily/ts-belt": "^3.13.1",
     "framer-motion": "^10.16.4",
     "million": "2.6.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-helmet": "^6.1.0",
     "react-icons": "^4.11.0",
-    "react-router-dom": "^6.18.0"
+    "react-router-dom": "^6.18.0",
+    "ts-pattern": "^5.0.5"
   },
   "devDependencies": {
     "@commitlint/cli": "^18.2.0",
@@ -41,6 +43,7 @@
     "@types/react-dom": "^18.2.15",
     "@types/react-helmet": "^6.1.9",
     "@vitejs/plugin-react": "^4.1.1",
+    "@vitejs/plugin-react-swc": "^3.5.0",
     "eslint": "^8.53.0",
     "eslint-config-sznm": "^2.0.2",
     "husky": "^8.0.3",

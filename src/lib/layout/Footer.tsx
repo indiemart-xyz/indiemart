@@ -1,4 +1,4 @@
-import { Flex, Link, Text } from '@chakra-ui/react';
+import { Flex, Text } from '@chakra-ui/react';
 
 const Footer = () => {
   return (
@@ -9,12 +9,7 @@ const Footer = () => {
       alignSelf="flex-end"
       justifyContent="center"
     >
-      <Text fontSize="xs">
-        {new Date().getFullYear()} -{' '}
-        <Link href="https://sznm.dev" isExternal>
-          sznm.dev
-        </Link>
-      </Text>
+      <Text fontSize="xs">{new Date().getFullYear()} - IndieMarT</Text>
     </Flex>
   );
 };
