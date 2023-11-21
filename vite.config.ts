@@ -7,8 +7,7 @@ import tsconfigPaths from 'vite-tsconfig-paths';
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  // TODO harusnya bisa diakses melalui process.env
-  base: '/indiemart/',
+  base: process.env.VITE_APP_BASE_URL || '/indiemart/',
   plugins: [
     million.vite({ auto: true }),
     react(),
