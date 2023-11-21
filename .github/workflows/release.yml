@@ -43,8 +43,8 @@ jobs:
       - name: Build
         run: pnpm build
         env:
-          VITE_APP_API_BASE_URL: ${{ env.VITE_APP_API_BASE_URL }}
-          VITE_APP_BASE: ${{ env.VITE_APP_BASE }}
+          VITE_APP_API_BASE_URL: ${{ vars.VITE_APP_API_BASE_URL }}
+          VITE_APP_BASE: ${{ vars.VITE_APP_BASE }}
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
