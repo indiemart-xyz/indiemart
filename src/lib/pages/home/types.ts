@@ -1,4 +1,4 @@
-export type Source = 'klikindomaret' | 'alfacart';
+export type Source = 'klikindomaret' | 'alfacart' | 'alfagift';
 export type SearchResponse = {
   name?: string;
   link?: string;
