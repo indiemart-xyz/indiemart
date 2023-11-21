@@ -7,6 +7,7 @@ import tsconfigPaths from 'vite-tsconfig-paths';
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  base: process.env.VITE_APP_BASE_URL || '/',
   plugins: [
     million.vite({ auto: true }),
     react(),
@@ -19,11 +20,11 @@ export default defineConfig({
   server: {
     open: true,
     proxy: {
-      "/api": {
-        target: "http://indiemart.yggdrasil.id",
+      '/api': {
+        target: 'http://indiemart.yggdrasil.id',
         changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/api/, '')
-      }
-    }
+        rewrite: (path) => path.replace(/^\/api/, ''),
+      },
+    },
   },
 });
