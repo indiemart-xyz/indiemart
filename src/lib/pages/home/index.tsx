@@ -224,7 +224,7 @@ const Home = () => {
       {state.view === 'list' ? (
         <List
           id="list"
-          preventSwipe={['left']}
+          preventSwipe={['left', 'up', 'bottom']}
           onSwipe={onSwipeList}
           data={getDataWithDefault(state.data, []).filter(
             (p) => !state.cart.map(({ id }) => id).includes(p.id)
@@ -251,7 +251,7 @@ const Home = () => {
           <List
             id="cart"
             onSwipe={onSwipeCart}
-            preventSwipe={['right']}
+            preventSwipe={['right', 'up', 'bottom']}
             data={state.cart}
           />
         </>
