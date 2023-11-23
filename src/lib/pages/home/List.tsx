@@ -8,16 +8,13 @@ import {
   Text,
   Tooltip,
 } from '@chakra-ui/react';
+import type { ComponentProps } from 'react';
+import TinderCard from 'react-tinder-card';
 
 import type { SearchResponse } from './types';
-import { sourceToColor, sourceToLabel } from './utils';
+import { format, sourceToColor, sourceToLabel } from './utils';
 
 type TProduct = SearchResponse;
-
-const format = (number: number) =>
-  new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR' }).format(
-    number
-  );
 
 const Product = (product: TProduct) => (
   <Card p="4">
@@ -49,10 +46,12 @@ const Product = (product: TProduct) => (
 );
 
 type ListProductProps = {
+  id?: string;
   data: SearchResponse[];
-};
+  onSwipe?: (direction: string, product: SearchResponse) => void;
+} & Pick<ComponentProps<typeof TinderCard>, 'preventSwipe'>;
 
-const ListProduct = ({ data }: ListProductProps) => {
+const ListProduct = ({ id, data, onSwipe, preventSwipe }: ListProductProps) => {
   return (
     <List
       as={Grid}
@@ -63,10 +62,16 @@ const ListProduct = ({ data }: ListProductProps) => {
         'repeat(4, 1fr)',
       ]}
     >
-      {data.map((product, i) => (
-        <GridItem key={product.name || i}>
-          <Product {...product} />
-        </GridItem>
+      {data.map((product) => (
+        <TinderCard
+          preventSwipe={preventSwipe}
+          key={`${id || ''}${product.id}`}
+          onSwipe={(dir) => (onSwipe ? onSwipe(dir, product) : () => {})}
+        >
+          <GridItem>
+            <Product {...product} />
+          </GridItem>
+        </TinderCard>
       ))}
     </List>
   );

@@ -1,5 +1,6 @@
 export type Source = 'klikindomaret' | 'alfacart' | 'alfagift';
 export type SearchResponse = {
+  id?: string;
   name?: string;
   link?: string;
   source?: Source;

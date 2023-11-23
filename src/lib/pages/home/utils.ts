@@ -13,3 +13,8 @@ export const sourceToLabel = (s: Source) =>
     [String(s === 'alfagift')]: 'Alfamart',
     [String(s === 'klikindomaret')]: 'Indomaret',
   }).true;
+
+export const format = (number: number) =>
+  new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR' }).format(
+    number
+  );
