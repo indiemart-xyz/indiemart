@@ -18,6 +18,7 @@ import { match, P } from 'ts-pattern';
 import { searchProduct } from './api';
 import { Filter } from './Filter';
 import { List } from './List';
+import { Loading } from './Loading';
 import { Search } from './Search';
 import type { AsyncData, SearchResponse, Data, Error, Source } from './types';
 import { format } from './utils';
@@ -103,6 +104,11 @@ const Home = () => {
   }, []);
 
   useEffect(() => {
+    setState((old) => ({
+      ...old,
+      data: { kind: 'loading' },
+    }));
+
     searchProduct({
       query: state.query,
       source: state.filter.source,
@@ -176,6 +182,7 @@ const Home = () => {
 
   return (
     <Grid gap="16">
+      {state.data.kind === 'loading' && <Loading />}
       <Stack>
         <Search
           defaultValue={state.query}
