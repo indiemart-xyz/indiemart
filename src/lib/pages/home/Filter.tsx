@@ -4,7 +4,7 @@ import { Badge, Stack } from '@chakra-ui/react';
 import type { Source } from './types';
 import { sourceToColor, sourceToLabel } from './utils';
 
-const sources: Source[] = ['klikindomaret', 'alfagift'];
+const sources: Source[] = ['klikindomaret', 'alfagift', 'yogyaonline'];
 
 type FilterProps = {
   onClick: (source: Source) => void;

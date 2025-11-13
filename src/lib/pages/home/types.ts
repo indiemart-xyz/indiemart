@@ -1,4 +1,4 @@
-export type Source = 'klikindomaret' | 'alfacart' | 'alfagift';
+export type Source = 'klikindomaret' | 'alfacart' | 'alfagift' | 'yogyaonline';
 export type SearchResponse = {
   id?: string;
   name?: string;
