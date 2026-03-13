@@ -181,9 +181,9 @@ const Home = () => {
   };
 
   return (
-    <Grid gap="16">
+    <Grid gap={{ base: 3, md: 8, lg: 16 }} px={{ base: 1, md: 0 }}>
       {state.data.kind === 'loading' && <Loading />}
-      <Stack>
+      <Stack spacing={{ base: 3, md: 4 }}>
         <Search
           defaultValue={state.query}
           onChange={(e) => {
@@ -191,21 +191,23 @@ const Home = () => {
           }}
         />
         <Stack
-          alignItems="center"
-          direction="row"
+          alignItems={{ base: 'flex-start', md: 'center' }}
+          direction={{ base: 'column', md: 'row' }}
           justifyContent="space-between"
+          spacing={{ base: 3, md: 0 }}
         >
           <Filter
             selected={state.filter.source}
             onClick={setFilter}
             onClear={() => setFilter()}
           />
-          <ButtonGroup size="sm">
+          <ButtonGroup size={{ base: 'xs', md: 'sm' }} spacing={2}>
             <IconButton
               onClick={() => setView('list')}
               aria-label="open list"
               colorScheme="blue"
               icon={<ListUl />}
+              variant={state.view === 'list' ? 'solid' : 'outline'}
             />
             <IconButton
               onClick={() => setView('cart')}
@@ -216,6 +218,7 @@ const Home = () => {
                   <Cart3 cursor="pointer" /> {state.cart.length}
                 </>
               }
+              variant={state.view === 'cart' ? 'solid' : 'outline'}
             />
           </ButtonGroup>
         </Stack>

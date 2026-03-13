@@ -1,4 +1,5 @@
-import { Box, Flex, Heading } from '@chakra-ui/react';
+import { Box, Flex, Heading, Link, Text } from '@chakra-ui/react';
+import { Link as RouterLink } from 'react-router-dom';
 
 import ThemeToggle from './ThemeToggle';
 
@@ -9,13 +10,27 @@ const Header = () => {
       width="full"
       align="center"
       alignSelf="flex-start"
-      justifyContent="center"
-      gridGap={2}
+      justifyContent="space-between"
     >
-      <Heading>IndieMart</Heading>
-      <Box marginLeft="auto">
-        <ThemeToggle />
+      <Box>
+        <Flex align="center" gap={3}>
+          <Heading>IndieMart</Heading>
+          <Link
+            as={RouterLink}
+            to="/about"
+            fontSize="xs"
+            color="gray.500"
+            _hover={{ color: 'blue.400' }}
+            textDecoration="underline"
+          >
+            about
+          </Link>
+        </Flex>
+        <Text fontSize="xs" color="gray.500" mt={0.5}>
+          data Indomaret &amp; Alfamart updated setiap hari
+        </Text>
       </Box>
+      <ThemeToggle />
     </Flex>
   );
 };
