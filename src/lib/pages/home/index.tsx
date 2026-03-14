@@ -1,8 +1,6 @@
 import { Cart3, ListUl } from '@chakra-icons/bootstrap';
 import { Share3 } from '@chakra-icons/tabler-icons';
 import {
-  Alert,
-  AlertIcon,
   Badge,
   ButtonGroup,
   Grid,
@@ -25,7 +23,6 @@ import type {
   DateFilter,
   SearchResponse,
   Data,
-  Error,
   Source,
 } from './types';
 import { format } from './utils';
@@ -33,11 +30,6 @@ import { format } from './utils';
 const toData = <T,>(data: T): Data<T> => ({
   kind: 'ok',
   data,
-});
-
-const toError = <E = unknown,>(error: E): Error<E> => ({
-  kind: 'error',
-  error,
 });
 
 const getDataWithDefault = <T, E>(a: AsyncData<T, E>, v: T) =>
@@ -78,12 +70,6 @@ const Home = () => {
       })),
     1000
   );
-
-  const setError = <E = unknown,>(e: E) =>
-    setState((old) => ({
-      ...old,
-      data: toError(e),
-    }));
 
   useEffect(() => {
     const log = <T,>(x: T) => {
@@ -129,7 +115,7 @@ const Home = () => {
           data: toData(json),
         }))
       )
-      .catch(setError);
+      .catch(() => {});
   }, [state.query, state.filter]);
 
   useDebugValue(state);
@@ -246,11 +232,10 @@ const Home = () => {
         </Stack>
       </Stack>
 
-      {state.data.kind === 'error' ? (
-        <Alert status="error">
-          <AlertIcon />
-          Kesalahan terjadi, tapi bukan dari kamu kok! :(
-        </Alert>
+      {state.data.kind === 'ok' && state.data.data.length === 0 ? (
+        <Text color="gray.400" fontSize="sm" textAlign="center">
+          Tidak ada data
+        </Text>
       ) : null}
 
       {state.view === 'list' ? (
