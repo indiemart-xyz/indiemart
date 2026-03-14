@@ -1,4 +1,5 @@
 export type Source = 'klikindomaret' | 'alfacart' | 'alfagift' | 'yogyaonline';
+export type DateFilter = 'today' | 'yesterday';
 export type SearchResponse = {
   id?: string;
   name?: string;

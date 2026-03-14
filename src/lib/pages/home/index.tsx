@@ -20,7 +20,14 @@ import { Filter } from './Filter';
 import { List } from './List';
 import { Loading } from './Loading';
 import { Search } from './Search';
-import type { AsyncData, SearchResponse, Data, Error, Source } from './types';
+import type {
+  AsyncData,
+  DateFilter,
+  SearchResponse,
+  Data,
+  Error,
+  Source,
+} from './types';
 import { format } from './utils';
 
 const toData = <T,>(data: T): Data<T> => ({
@@ -38,6 +45,7 @@ const getDataWithDefault = <T, E>(a: AsyncData<T, E>, v: T) =>
 
 type FilterState = {
   source?: Source;
+  date: DateFilter;
 };
 
 type State = {
@@ -56,6 +64,7 @@ const Home = () => {
     data: { kind: 'idle' },
     filter: {
       source: undefined,
+      date: 'today',
     },
     cart: [],
     view: 'list',
@@ -112,6 +121,7 @@ const Home = () => {
     searchProduct({
       query: state.query,
       source: state.filter.source,
+      date: state.filter.date,
     })
       .then((json) =>
         setState((old) => ({
@@ -128,7 +138,17 @@ const Home = () => {
     setState((old) => ({
       ...old,
       filter: {
+        ...old.filter,
         source,
+      },
+    }));
+
+  const setDateFilter = (date: DateFilter) =>
+    setState((old) => ({
+      ...old,
+      filter: {
+        ...old.filter,
+        date,
       },
     }));
 
@@ -200,6 +220,8 @@ const Home = () => {
             selected={state.filter.source}
             onClick={setFilter}
             onClear={() => setFilter()}
+            selectedDate={state.filter.date}
+            onDateClick={setDateFilter}
           />
           <ButtonGroup size={{ base: 'xs', md: 'sm' }} spacing={2}>
             <IconButton
